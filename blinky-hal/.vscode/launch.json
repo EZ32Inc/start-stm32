@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ESP32JTAG Debug",
+      "cwd": "${workspaceFolder}",
+      "executable": "./build/blink-hal.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "servertype": "external",
+      "gdbTarget": "192.168.4.1:4242",
+      "device": "STM32F103C8",   
+      //"showDevDebugOutput": "raw",
+      "interface": "swd",
+      "runToEntryPoint": "main",
+      "preLaunchTask": "build",
+      //"preLaunchCommands": [
+       "overrideLaunchCommands":[
+        "file ./build/blink-hal.elf",
+        "enable breakpoint",
+        "monitor a",
+        "attach 1",
+        "load"
+      ]
+
+    }
+  ]
+}
+
