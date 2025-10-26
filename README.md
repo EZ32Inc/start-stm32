@@ -1,4 +1,36 @@
-# Getting Started with STM32 Programming
+#  How to Debug STM32 (or Any ARM MCU) Using ESP32JTAG + VSCode + Cortex-Debug
+
+This guide explains how to set up **VSCode** and **Cortex-Debug** to debug an STM32 MCU using **ESP32JTAG**, a wireless JTAG interface based on ESP32 + FPGA.
+
+---
+
+## 1. Install Prerequisites
+
+### Visual Studio Code
+Download and install VSCode from:
+👉 [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+### Cortex-Debug Extension
+In VSCode, open the Extensions view (**Ctrl+Shift+X**), search for **“Cortex-Debug”**, and install it.
+
+- Extension ID: `marus25.cortex-debug`
+
+---
+
+## 2. ARM Toolchain
+
+You need the **GNU Arm Embedded Toolchain** to build and debug firmware.
+
+### Windows
+Download and install:
+👉 [Arm Developer - GNU Arm Toolchain](https://developer.arm.com/downloads/-/gnu-rm)
+
+Make sure `arm-none-eabi-gdb.exe` is in your system PATH.
+
+### Linux / macOS
+```bash
+sudo apt install gcc-arm-none-eabi gdb-multiarch
+
 
 The BluePill STM32F103C8 board is used for this project.
 
@@ -67,55 +99,6 @@ The project initialization is done by STM32CubeMX.
   }
   /* USER CODE END 3 */
 ```
-
-## Uploading
-
-The best way to upload the sketch is to use ST-Link or J-Link debuggers or any other debugger supported by OpenOCD:
-
-For example you can upload your program to STM32F103 microcontroller [using an FT232H module](https://github.com/m3y54m/cjmcu-ft232hq-programmer) and `openocd` tool using this command (`firmware.bin` is the name of your program binary file):
-
-```bash
-openocd -f interface/ftdi/ft232h-module-swd.cfg -f target/stm32f1x.cfg  -c init -c "reset halt" -c "flash write_image erase firmware.bin 0x08000000" -c "reset" -c shutdown
-```
-
-If you are using ST-LINK, you can use one of these two methods:
-
-Using `st-flash` tool:
-
-```bash
-st-flash write firmware.bin 0x8000000
-```
-Using `openocd` tool:
-
-```bash
-openocd -f interface/stlink.cfg -f target/stm32f1x.cfg  -c init -c "reset halt" -c "flash write_image erase firmware.bin 0x08000000" -c "reset" -c shutdown
-```
-
-But due to the additional hardware costs you may want to use a cheaper alternative method.
-
-I have tried to upload the program using the DFU, HID, and Maple bootloaders but I couldn't get them to work.
-
-[STM32 Maple DFU Bootloader 2.0](https://github.com/rogerclarkmelbourne/STM32duino-bootloader/blob/master/binaries/generic_boot20_pc13.bin)
-
-[STM32 HID Bootloader](https://github.com/Serasidis/STM32_HID_Bootloader/releases)
-
-You can find some Arduino-STM32 upload methods in this page:
-
-[Program STM32 Blue Pill (STM32F103C8T6) with Arduino IDE](https://www.sgbotic.com/index.php?dispatch=pages.view&page_id=48)
-
-STM32F103C8T6 has an embedded bootloader in its ROM that can be used to upload the sketch. This is the best alternative method I've found.
-
-This method is implemented in PlatformIO under the name `upload_protocol` of `serial`.
-
-All the hardware you need is a connection between UART1 of the board (PA9-TX1 and PA10-RX1) and a USB to serial dongle connected to your computer.
-
-![image](https://user-images.githubusercontent.com/1549028/213869831-610a84d2-9df3-4d2a-bf80-3e32a9a684b5.png)
-
-> Before uploading the sketch, make sure that BOOT0 is connected to VCC and RESET button is pressed. This will start up the microcontroller in the bootloader mode.
- 
-> Each time you change the configuration of BOOT0, you should RESET the board.
-
-![image](https://user-images.githubusercontent.com/1549028/213869836-5bc00653-19df-4bdc-853b-94aeb717bb58.png)
 
 ### Boot Modes
 
