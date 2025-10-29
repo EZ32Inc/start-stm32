@@ -2,6 +2,9 @@
 
 This guide explains how to set up **VSCode** and **Cortex-Debug** to debug an STM32 MCU using **ESP32JTAG**, a wireless JTAG interface based on ESP32 + FPGA.
 
+For more info on ESP32JTAG, please visit:
+👉 [https://www.crowdsupply.com/ez32/esp32jtag](https://www.crowdsupply.com/ez32/esp32jtag)
+
 ---
 
 ## 1. Install Prerequisites
@@ -30,6 +33,30 @@ Make sure `arm-none-eabi-gdb.exe` is in your system PATH.
 ### Linux / macOS
 ```bash
 sudo apt install gcc-arm-none-eabi gdb-multiarch
+```
+
+Verify:
+```bash
+arm-none-eabi-gcc --version
+arm-none-eabi-gdb --version
+```
+## 3. Preparing the Code
+
+It should be any **GNU Makefile–based** project for your target board.
+
+Here we prepared a project for **STM32F103C8T6 (BluePill)**.
+You can download and try it — it also includes the required configuration files to use with **ESP32JTAG + VSCode + Cortex-Debug**.
+
+👉 **GitHub Repository:** [https://github.com/EZ32Inc/start-stm32](https://github.com/EZ32Inc/start-stm32)
+
+**Code copy:**
+```bash
+git clone https://github.com/EZ32Inc/start-stm32.git
+cd start-stm32/blinky-hal
+make clean
+make
+```
+
 
 
 The BluePill STM32F103C8 board is used for this project.
