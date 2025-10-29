@@ -57,13 +57,9 @@ make clean
 make
 ```
 
+## 4. About the Code
 
-
-The BluePill STM32F103C8 board is used for this project.
-
-## LED Blink Program
-
-### [With No Libraries](blinky-no-lib) 
+### [LED Blink Program With No Libraries](blinky-no-lib) 
 
 This program is based on the article ***["Bare Metal STM32 Programming – LED Blink"](https://freeelectron.ro/bare-metal-stm32-led-blink/)*** without using any external libraries (except `stdint.h` which is only used to define `uint32_t`).
 
@@ -127,6 +123,8 @@ The project initialization is done by STM32CubeMX.
   /* USER CODE END 3 */
 ```
 
+## 4. Board Info
+
 ### Boot Modes
 
 A couple of special MCU pins has to be set-up to proper logical values to enter the bootloader. The pins are named BOOT0 and BOOT1 on the STM32 microcontroller. Boot pins can select several modes of bootloader operation:
@@ -137,16 +135,19 @@ A couple of special MCU pins has to be set-up to proper logical values to enter 
 | 0      | 1      | System Memory     | System memory is selected as boot space     |
 | 1      | 1      | Embedded SRAM     | Embedded SRAM is selected as boot space     |
 
-## Pinout
+### Pinout
 
 ![image](https://user-images.githubusercontent.com/1549028/213869634-1ede5169-8cdf-4ff9-8a94-26daba5fbd69.png)
 
-## Schematics
+### Schematics
 
 ![image](https://user-images.githubusercontent.com/1549028/213869613-a7071a58-811e-42a3-b75f-5759ac5d6baa.png)
 
-## Resources
+### Resources
 
+- [https://www.crowdsupply.com/ez32/esp32jtag](https://www.crowdsupply.com/ez32/esp32jtag)
+- [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- [https://github.com/m3y54m/start-stm32](https://github.com/m3y54m/start-stm32)
 - [Setting-up cross compiler and build tools for STM32](https://freeelectron.ro/arm-cross-compiler-tutorial-stm32/)
 - [Bare Metal STM32 Programming – LED Blink](https://freeelectron.ro/bare-metal-stm32-led-blink/)
 - [Bare Metal - From zero to blink](https://www.linuxembedded.fr/2021/02/bare-metal-from-zero-to-blink)
@@ -161,3 +162,8 @@ A couple of special MCU pins has to be set-up to proper logical values to enter 
 - [UART and new board introduction](https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Step3_Introduction_to_the_UART)
 - [Using the STM32 UART interface with HAL ](https://visualgdb.com/tutorials/arm/stm32/uart/hal/)
 - [st-flash tool](https://github.com/stlink-org/stlink)
+
+## 5. Credit goes to:
+[https://github.com/m3y54m/start-stm32](https://github.com/m3y54m/start-stm32)
+
+Thank you!
